@@ -113,14 +113,14 @@ Next I explore different network architectures and hyperparameters to find an ag
 | DQN          | 0.99          | 0.0005        | 0.001      | 1e5         | **0.99**      | 0.2         | 416               |
 | DQN          | 0.99          | 0.0005        | 0.001      | 1e5         | 0.97          | **0.1**     | 322               |
 
-[Parameter Results](./images/tuning.png)
+![Parameter Results](./images/tuning.png)
 
 
 ### Final Parameters and Trained Agent
 
 After determining the best parameters from training various networks and hyperparameters, I then trained an agent over a larger number of episodes.  I keep track of the best average score over the past 100 episodes, and save a new checkpoint for each new best value.
 
-| Architecture | Hidden Layers | Gamma | Learning Rate | Tau   | Buffer Size | ε Decay | εMin  | Episodes to Solve |
+| Architecture | Hidden Layers | Gamma | Learning Rate | Tau   | Buffer Size | ε Decay | ε Min  | Episodes to Solve |
 | ------------ |---------------| ----- | --------------| ----- | ----------- | ------- | ----- |-------------------|
 | Dueling DDQN | 64,64         | 0.99  | 0.0005        | 0.001 | 1e5         | 0.97    | 0.2   | 273               |
 
