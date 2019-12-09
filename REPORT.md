@@ -66,7 +66,9 @@ Fixed Q-Targets improve stability by de-coupling the target from our current est
 ![Fixed Q-Targets](./images/fixed.png)
 
 
-#### Double Deep Q-Network (DDQN)
+#### Double DQN
+
+DQN is prone to overestimation of Q-values.  When updating network parameters, the target value is obtained through an argmax of the action-values using the current network parameters.  However, since the parameters are still evolving, we likely do not have enough information to know the best action, especially during early stages.  To mitigate this, the Double DQN algorithm introduces a way to validate that we indeed have the best action by evaluating the action value with a second set of parameteres.  In the case where the second network produces a low q-value, then we avoid overestimating the q-value for the given action.  In practice, we already have a second set of weights as introduced with the fixed q-targets.
 
 ![DDQN](./images/ddqn.png)
 
@@ -87,9 +89,9 @@ Next I explore different network architectures and hyperparameters to find an ag
 | Dueling DQN  | YES               | YES             | **YES**          | NO         | 64, 64        | 316               |
 | Double DQN   | YES               | YES             | NO               | **YES**    | 64, 64        | 379               |
 | Dueling DDQN | YES               | YES             | **YES**          | **YES**    | 64, 64        | 273               |
-| DQN          | YES               | YES             | NO               | NO         | **128,64**    | 406               |
-| DQN          | YES               | YES             | NO               | NO         | **64,32**     | 383               |
-| DQN          | YES               | YES             | NO               | NO         | **32,32**     | 425               |
+| DQN          | YES               | YES             | NO               | NO         | **128, 64**   | 406               |
+| DQN          | YES               | YES             | NO               | NO         | **64, 32**    | 383               |
+| DQN          | YES               | YES             | NO               | NO         | **32, 32**    | 425               |
 
 ### Hyperparameter Results
 
@@ -102,7 +104,7 @@ Next I explore different network architectures and hyperparameters to find an ag
 | DQN          | 0.99          | **1e-4**      | 1e-3     | 1e5         | 0.97          | 0.2         | 459               |
 | DQN          | 0.99          | 5e-4          | **1e-1** | 1e5         | 0.97          | 0.2         | 556               |
 | DQN          | 0.99          | 5e-4          | **1e-2** | 1e5         | 0.97          | 0.2         | 379               |
-| DQN          | 0.99          | 5e-4          | **1e-4** | 1e5         | 0.97          | 0.2         |                   |
+| DQN          | 0.99          | 5e-4          | **1e-4** | 1e5         | 0.97          | 0.2         | x                 |
 | DQN          | 0.99          | 5e-4          | 1e-4     | **1e4**     | 0.97          | 0.2         |                   |
 | DQN          | 0.99          | 5e-4          | 1e-4     | **1e6**     | 0.97          | 0.2         |                   |
 | DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.98**      | 0.2         |                   |
