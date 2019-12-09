@@ -39,12 +39,6 @@ print("Score: {}".format(score))
 
 The objective of the learning algorithm is to learn the optimal policy (π*) — the policy that maximizes long term reward.  To achieve this, I use an extension of Q-Learning.  Q-Learning learns the actual-value function: How good to take an action at a given state.
 
-- Q-Function
-- Optimal Policy
-- Bellman
-- Epsilon Greedy
-- Discounted Future Return
-
 ![Q-Learning](./images/q-learning.png)
 
 #### DQN
@@ -103,30 +97,39 @@ Next I explore different network architectures and hyperparameters to find an ag
 
 ### Hyperparameter Results
 
-| Architecture | Gamma         | Learning Rate | Tau      | Buffer Size | Epsilon Decay | Epsilon Min | Episodes to Solve |
-| ------------ |-------------- | ------------- | ---------| ----------- | ------------- | ----------- | ----------------- |
-| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | 0.97          | 0.2         | 336               |
-| DQN          | **1.0**       | 5e-4          | 1e-3     | 1e5         | 0.97          | 0.2         | 362               |
-| DQN          | **0.95**      | 5e-4          | 1e-3     | 1e5         | 0.97          | 0.2         | 385               |
-| DQN          | 0.99          | **1e-3**      | 1e-3     | 1e5         | 0.97          | 0.2         | 375               |
-| DQN          | 0.99          | **1e-4**      | 1e-3     | 1e5         | 0.97          | 0.2         | 459               |
-| DQN          | 0.99          | 5e-4          | **1e-1** | 1e5         | 0.97          | 0.2         | 556               |
-| DQN          | 0.99          | 5e-4          | **1e-2** | 1e5         | 0.97          | 0.2         | 379               |
-| DQN          | 0.99          | 5e-4          | **1e-4** | 1e5         | 0.97          | 0.2         | x                 |
-| DQN          | 0.99          | 5e-4          | 1e-4     | **1e4**     | 0.97          | 0.2         |                   |
-| DQN          | 0.99          | 5e-4          | 1e-4     | **1e6**     | 0.97          | 0.2         |                   |
-| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.98**      | 0.2         | 395               |
-| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.99**      | 0.2         |                   |
-| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | 0.97          | **0.1**     | 322               |
+| Architecture | Gamma         | Learning Rate | Tau        | Buffer Size | Epsilon Decay | Epsilon Min | Episodes to Solve |
+| ------------ |-------------- | ------------- | -----------| ----------- | ------------- | ----------- | ----------------- |
+| DQN          | 0.99          | 0.0005        | 0.001      | 1e5         | 0.97          | 0.2         | 336               |
+| DQN          | **1.0**       | 0.0005        | 0.001      | 1e5         | 0.97          | 0.2         | 362               |
+| DQN          | **0.95**      | 0.0005        | 0.001      | 1e5         | 0.97          | 0.2         | 385               |
+| DQN          | 0.99          | **0.001**     | 0.001      | 1e5         | 0.97          | 0.2         | 375               |
+| DQN          | 0.99          | **0.0001**    | 0.001      | 1e5         | 0.97          | 0.2         | 459               |
+| DQN          | 0.99          | 0.0005        | **0.1**    | 1e5         | 0.97          | 0.2         | 556               |
+| DQN          | 0.99          | 0.0005        | **0.01**   | 1e5         | 0.97          | 0.2         | 379               |
+| DQN          | 0.99          | 0.0005        | **0.0001** | 1e5         | 0.97          | 0.2         | x                 |
+| DQN          | 0.99          | 0.0005        | 0.001      | **1e4**     | 0.97          | 0.2         | 346               |
+| DQN          | 0.99          | 0.0005        | 0.001      | **1e6**     | 0.97          | 0.2         | 312               |
+| DQN          | 0.99          | 0.0005        | 0.001      | 1e5         | **0.98**      | 0.2         | 395               |
+| DQN          | 0.99          | 0.0005        | 0.001      | 1e5         | **0.99**      | 0.2         | 416               |
+| DQN          | 0.99          | 0.0005        | 0.001      | 1e5         | 0.97          | **0.1**     | 322               |
 
-### Tuned Parameters
-
-
+[Parameter Results](./images/tuning.png)
 
 
-### Plot
+### Final Parameters and Trained Agent
 
-### Number of Episodes
+After determining the best parameters from training various networks and hyperparameters, I then trained an agent over a larger number of episodes.  I keep track of the best average score over the past 100 episodes, and save a new checkpoint for each new best value.
+
+| Architecture | Hidden Layers | Gamma | Learning Rate | Tau   | Buffer Size | ε Decay | εMin  | Episodes to Solve |
+| ------------ |---------------| ----- | --------------| ----- | ----------- | ------- | ----- |-------------------|
+| Dueling DDQN | 64,64         | 0.99  | 0.0005        | 0.001 | 1e5         | 0.97    | 0.2   | 273               |
+
+```
+Training Agent: Dueling DDQN
+Episode: 100	Average Score: 4.94
+Episode: 200	Average Score: 9.93
+Environment solved in 273 episodes!	Average Score: 13.04
+```
 
 ### Improvement Ideas
 
@@ -135,3 +138,6 @@ Next I explore different network architectures and hyperparameters to find an ag
 - [Noisy DQN](https://arxiv.org/abs/1706.10295).  "We introduce NoisyNet, a deep reinforcement learning agent with parametric noise added to its weights, and show that the induced stochasticity of the agent's policy can be used to aid efficient exploration."
 - [Distributed DQN](https://arxiv.org/abs/1707.06887) "In this paper we argue for the fundamental importance of the value distribution: the distribution of the random return received by a reinforcement learning agent. This is in contrast to the common approach to reinforcement learning which models the expectation of this return, or value."
 - Try different regularization and activation functions (dropout, relu, tanh)
+- To choose the best parameters, allow the agent to learn over a longer period, and not just until the agent solves the environment
+- Try more combinations of parameters to find the best network and hyperparameters, as well as try many times to make sure that the performance is consistent.
+- Try momentum or decay with learning rate and tau
