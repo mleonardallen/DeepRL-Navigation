@@ -131,6 +131,8 @@ Environment solved in 273 episodes!	Average Score: 13.04
 
 ![Average Score](./images/final.png)
 
+![Trained Agent](./images/trained.gif)
+
 ### Improvement Ideas
 
 - [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) "In this paper we develop a framework for prioritizing experience, so as to replay important transitions more frequently, and therefore learn more efficiently."
