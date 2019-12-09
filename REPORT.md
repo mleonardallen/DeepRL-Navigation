@@ -13,9 +13,7 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 ### Establish Baseline
 
-To establish a baseline, I first see how the agent performs using the equiprobable random policy.
-
-Of course, as part of the project, you'll have to change the code so that the agent is able to use its experience to gradually choose better actions when interacting with the environment!
+To establish a baseline, I first see how the agent performs using the equiprobable random policy.  I ran this code a few times, resulting in scores of -2 to 2. Of course, we'll want to do better by training our agent to learn from these experiences.
 
 ```
 env_info = env.reset(train_mode=False)[brain_name] # reset the environment
