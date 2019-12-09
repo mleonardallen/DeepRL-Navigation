@@ -75,6 +75,14 @@ DQN is prone to overestimation of Q-values.  When updating network parameters, t
 
 #### Dueling DQN
 
+From the [Dueling DQN Paper](https://arxiv.org/pdf/1511.06581.pdf)
+
+> The main benefit of this factoring is to generalize learning across actions without imposing any change to the underlying reinforcement learning algorithm. Our results show that this architecture leads to better policy evaluation in the presence of many similar-valued actions.
+
+> Intuitively, the dueling architecture can learn which states are (or are not) valuable, without having to learn the effect of each action for each state
+
+Dueling DQN is achieved by using two streams in the final layers of the network.  One stream estimates the value function, and the other stream estimates the advantage of each action.
+
 ![Deuling DQN](./images/dueling.png)
 
 
@@ -109,7 +117,7 @@ Next I explore different network architectures and hyperparameters to find an ag
 | DQN          | 0.99          | 5e-4          | 1e-4     | **1e6**     | 0.97          | 0.2         |                   |
 | DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.98**      | 0.2         |                   |
 | DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.99**      | 0.2         |                   |
-| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | 0.97          | **0.1**     |                   |
+| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | 0.97          | **0.1**     | 322               |
 
 ### Tuned Parameters
 
