@@ -115,7 +115,7 @@ Next I explore different network architectures and hyperparameters to find an ag
 | DQN          | 0.99          | 5e-4          | **1e-4** | 1e5         | 0.97          | 0.2         | x                 |
 | DQN          | 0.99          | 5e-4          | 1e-4     | **1e4**     | 0.97          | 0.2         |                   |
 | DQN          | 0.99          | 5e-4          | 1e-4     | **1e6**     | 0.97          | 0.2         |                   |
-| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.98**      | 0.2         |                   |
+| DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.98**      | 0.2         | 395               |
 | DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | **0.99**      | 0.2         |                   |
 | DQN          | 0.99          | 5e-4          | 1e-3     | 1e5         | 0.97          | **0.1**     | 322               |
 
@@ -130,8 +130,8 @@ Next I explore different network architectures and hyperparameters to find an ag
 
 ### Improvement Ideas
 
-- Prioritized Experience Replay
-- Learning from multi-step bootstrap targets (as in A3C - you'll learn about this in the next part of the nanodegree)
-- Distributional DQN
-- Noisy DQN
-- Dropout
+- [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) "In this paper we develop a framework for prioritizing experience, so as to replay important transitions more frequently, and therefore learn more efficiently."
+- [A3C](https://arxiv.org/abs/1602.01783) "We present asynchronous variants of four standard reinforcement learning algorithms and show that parallel actor-learners have a stabilizing effect on training..."
+- [Noisy DQN](https://arxiv.org/abs/1706.10295).  "We introduce NoisyNet, a deep reinforcement learning agent with parametric noise added to its weights, and show that the induced stochasticity of the agent's policy can be used to aid efficient exploration."
+- [Distributed DQN](https://arxiv.org/abs/1707.06887) "In this paper we argue for the fundamental importance of the value distribution: the distribution of the random return received by a reinforcement learning agent. This is in contrast to the common approach to reinforcement learning which models the expectation of this return, or value."
+- Try different regularization and activation functions (dropout, relu, tanh)
